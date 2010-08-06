@@ -1,0 +1,6 @@
+#include "libnspr4-0d.symbols"
+libnspr4.so.0d libnspr4-0d #MINVER#
+ _PR_ppc_AtomicAdd@Base 4.7.0
+ _PR_ppc_AtomicDecrement@Base 4.7.0
+ _PR_ppc_AtomicIncrement@Base 4.7.0
+ _PR_ppc_AtomicSet@Base 4.7.0

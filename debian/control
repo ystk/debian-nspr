@@ -1,0 +1,57 @@
+Source: nspr
+Section: libs
+Priority: optional
+Maintainer: Maintainers of Mozilla-related packages <pkg-mozilla-maintainers@lists.alioth.debian.org>
+Uploaders: Mike Hommey <glandium@debian.org>
+Build-Depends: debhelper (>= 7.0.50), autotools-dev
+Standards-Version: 3.9.1.0
+Homepage: http://www.mozilla.org/projects/nspr/
+Vcs-Git: git://git.debian.org/git/pkg-mozilla/nspr.git
+Vcs-Browser: http://git.debian.org/?p=pkg-mozilla/nspr.git
+
+Package: libnspr4-0d
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}
+Description: NetScape Portable Runtime Library
+ This library provides platform independent non-GUI operating system
+ facilities including:
+  * threads,
+  * thread synchronisation,
+  * normal file I/O and network I/O,
+  * interval timing and calendar time,
+  * basic memory management (malloc and free),
+  * shared library linking.
+
+Package: libnspr4-dev
+Section: libdevel
+Architecture: any
+Depends: ${misc:Depends}, libnspr4-0d (>= ${source:Upstream-Version}), libnspr4-0d (<= ${source:Version}.1~)
+Description: Development files for the NetScape Portable Runtime library
+ This library provides platform independent non-GUI operating system
+ facilities including:
+  * threads,
+  * thread synchronisation,
+  * normal file I/O and network I/O,
+  * interval timing and calendar time,
+  * basic memory management (malloc and free),
+  * shared library linking.
+ .
+ Install this package if you wish to develop your own programs using the
+ NetScape Portable Runtime library.
+
+Package: libnspr4-0d-dbg
+Section: debug
+Priority: extra
+Architecture: any
+Depends: libnspr4-0d (= ${binary:Version}), ${misc:Depends}
+Description: Debugging symbols for the NetScape Portable Runtime library
+ This library provides platform independent non-GUI operating system
+ facilities including:
+  * threads,
+  * thread synchronisation,
+  * normal file I/O and network I/O,
+  * interval timing and calendar time,
+  * basic memory management (malloc and free),
+  * shared library linking.
+ .
+ This package provides the debugging symbols for the library.

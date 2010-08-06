@@ -1,0 +1,240 @@
+nspr (4.8.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/patches/*: Refresh patches.
+  * debian/patches/90_Move_PR_STATIC_ASSERT_from_prlog.h_to_prtypes.h.patch:
+    Removed, as applied upstream.
+  * debian/libnspr4-0d.symbols: Add new symbol.
+  * debian/rules:
+    - Bump shlibs.
+    - Let nspr use its own optimization options.
+    - Use the --enable-debug-symbols configure option instead of forcing -g
+      into compiler flags.
+  * debian/control: Bump Standards-Version to 3.9.1.0.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 06 Aug 2010 08:21:33 +0200
+
+nspr (4.8.4-2) unstable; urgency=low
+
+  * debian/patches/90_Move_PR_STATIC_ASSERT_from_prlog.h_to_prtypes.h.patch:
+    Move PR_STATIC_ASSERT from prlog.h to prtypes.h. bz#551782.
+  * debian/control:
+    - Remove conflicts with very old packages.
+    - Bump Standards-Version to 3.9.0.0.
+
+ -- Mike Hommey <glandium@debian.org>  Thu, 08 Jul 2010 13:52:39 +0200
+
+nspr (4.8.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/patches/99_configure.dpatch: Updated.
+  * debian/control:
+    - Remove old dependency from libnspr4-dev on libnspr4-0d (>> 4.7.1-1).
+      It was only necessary when Upstream-Version was 4.7.1.
+    - Bump Standards-Version to 3.8.4.0.
+
+ -- Mike Hommey <glandium@debian.org>  Mon, 08 Mar 2010 09:33:17 +0100
+
+nspr (4.8.3-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/rules, debian/patches/00list, debian/patches/80_config.dpatch:
+    Move what debian/patches/80_config.dpatch does into debian/rules.
+  * debian/patches/*: Refresh patches.
+  * debian/rules: Remove the rule to refresh 99_configure.dpatch.
+  * debian/patches/*, debian/rules, debian/control, debian/source/format:
+    Switch to 3.0 (quilt) format.
+  * debian/control: Bump Standards-Version to 3.8.3.0.
+  * debian/compat, debian/control, debian/rules: Simplify debian/rules
+    with the use of dh. This has the side effect of calling make distclean
+    properly and Closes: #552027.
+  * debian/control: Add ${misc:Depends} to libnspr4-0d-dbg dependencies.
+
+ -- Mike Hommey <glandium@debian.org>  Mon, 25 Jan 2010 12:42:30 +0100
+
+nspr (4.8.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * Fixes overflow related to mfsa-2009-34, aka CVE-2009-2463.
+  * debian/patches/82_CVE-2009-1563.dpatch: Removed, as applied upstream.
+  * debian/patches/99_configure.dpatch: Updated.
+  * debian/patches/00list: Remove 82_CVE-2009-1563.
+
+ -- Mike Hommey <glandium@debian.org>  Wed, 04 Nov 2009 15:46:48 +0100
+
+nspr (4.8-2) unstable; urgency=low
+
+  * debian/patches/82_CVE-2009-1563.dpatch: Fix for CVE-2009-1563 aka
+    mfsa-2009-59.
+  * debian/patches/00list: Add 82_CVE-2009-1563.
+
+ -- Mike Hommey <glandium@debian.org>  Wed, 28 Oct 2009 16:46:28 +0100
+
+nspr (4.8-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/patches/30_reinit.dpatch: Remove, as applied upstream.
+  * debian/patches/00list: Remove 30_reinit.
+  * debian/patches/81_sonames.dpatch,
+    debian/patches/99_configure.dpatch: Adapted to upstream changes.
+  * debian/libnspr4-0d.symbols: Add new symbols.
+  * debian/rules: Bump shlibs version.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 13 Jun 2009 21:27:09 +0200
+
+nspr (4.7.4-3) unstable; urgency=low
+
+  * debian/libnspr4-0d.symbols.kfreebsd*: Add symbols files for kfreebsd
+    i386 and amd64. Closes: #528781.
+  * debian/patches/30_reinit.dpatch: Apply another path from bz#485318 to
+    allow proper reinitialization of the library. Closes: #520689.
+  * debian/patches/00list: Add 30_reinit.
+
+ -- Mike Hommey <glandium@debian.org>  Wed, 20 May 2009 08:36:20 +0200
+
+nspr (4.7.4-2) unstable; urgency=low
+
+  * debian/libnspr4-0d.symbols.hurd_i386: Renamed to
+    debian/libnspr4-0d.symbols.hurd-i386. Closes: #524580.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 18 Apr 2009 22:24:46 +0200
+
+nspr (4.7.4-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/patches/30_dev_urandom.dpatch: Drop, as applied upstream.
+  * debian/patches/00list: Updated accordingly.
+  * debian/patches/38_hurd.dpatch, debian/patches/81_sonames.dpatch,
+    debian/patches/99_configure.dpatch: Adapted to upstream changes.
+  * debian/rules: Force dpkg-gensymbols to fail when symbols are missing.
+  * debian/control:
+    + Bumped Standards-Version to 3.8.1.0. No changes needed.
+    + Put the libnspr4-0d-dbg package in the "debug" section.
+    + Correct libnspr4-0d-dbg short description.
+    + Remove redundant section on libnspr4-0d.
+    + Build-depend on proper version of debhelper for dh_lintian.
+  * debian/*.lintian-overrides, debian/rules: Install some Lintian
+    overrides with dh_lintian.
+  * debian/patches/30_reinit.dpatch: Apply patch from bz#485318 to allow
+    proper reinitialization of the library. Closes: #520689.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 18 Apr 2009 01:28:48 +0200
+
+nspr (4.7.1-4) unstable; urgency=low
+
+  * debian/patches/30_dev_urandom.dpath: Use /dev/urandom instead of
+    /dev/random to avoid freezing at iceweasel startup when there is
+    not enough entropy. Closes: #499146.
+  * debian/patches/00list: Updated accordingly.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 20 Sep 2008 09:50:13 +0200
+
+nspr (4.7.1-3) unstable; urgency=low
+
+  * debian/control: Make libnspr4-0d conflict with old libnspr4, which can
+    still be installed on some systems, though it hasn't been in the archive
+    since sarge. Closes: #485079.
+
+ -- Mike Hommey <glandium@debian.org>  Sun, 08 Jun 2008 14:09:34 +0200
+
+nspr (4.7.1-2) unstable; urgency=low
+
+  * debian/libnspr4-dev.install, debian/libnspr4-0d.install: Don't install so
+    files in the -dev package but in the library package. It will allow
+    external applications linked against upstream nspr to work on Debian with
+    system nspr libraries, and will avoid all browsers to have to implement
+    symlinks themselves to allow some external plugins to work properly.
+  * debian/control: Make libnspr4-0d conflict with older versions of
+    libnspr4-dev and libnspr4-dev need newer libnspr4-0d accordingly.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 07 Jun 2008 11:36:46 +0200
+
+nspr (4.7.1-1) unstable; urgency=low
+
+  * New upstream release, picked from NSPR_4_7_1_RTM cvs tag.
+  * debian/patches/99_configure.dpatch: Updated.
+
+ -- Mike Hommey <glandium@debian.org>  Sun, 11 May 2008 17:05:28 +0200
+
+nspr (4.7.0-2) unstable; urgency=low
+
+  * debian/libnspr4-0d.symbols.powerpc: Add new powerpc specific symbols.
+  * debian/control: Turn Homepage indications in descriptions into a
+    control field.
+  * debian/rules:
+    + Don't ignore $(MAKE) distclean errors.
+    + Bump shlibs, but only for ppc.
+  * debian/patches/38_hurd.dpatch: Fix FTBFS on Hurd. Closes: #457573.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 08 Mar 2008 08:01:47 +0100
+
+nspr (4.7.0-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/patches/99_configure.dpatch: Updated.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 07 Mar 2008 19:32:28 +0100
+
+nspr (4.7.0~1.9b1-2) unstable; urgency=low
+
+  * debian/*.symbols.*: Remove "../../" workaround now that dh_makeshlibs
+    supports symbols files includes properly.
+  * debian/control:
+    + Build depend on debhelper (>= 5.0.62), where this happened. Remove
+      dpkg-dev versioned build-dependency, as debhelper already depends
+      on the proper one, and this dependency is obviously not going to be
+      dropped.
+    + Bumped Standards-Version to 3.7.3.0. No changes needed.
+
+ -- Mike Hommey <glandium@debian.org>  Thu, 13 Dec 2007 21:22:50 +0100
+
+nspr (4.7.0~1.9b1-1) unstable; urgency=low
+
+  * New upstream snapshot, picked from FIREFOX_3_0b1_RELEASE cvs tag.
+  * debian/patches/81_sonames.dpatch: Updated to fit upstream changes.
+  * debian/patches/18_kbsd_nspr.dpatch,
+    debian/patches/30_nspr_m4.dpatch: Removed, as applied upstream.
+  * debian/patches/00list: Updated accordingly.
+  * debian/patches/99_configure.dpatch: Updated.
+  * debian/rules, debian/patches/30_pkgconfig.dpatch: The real_install rule
+    has been replaced by install, upstream, so we now use it.
+  * debian/libnspr4-0d.symbols, debian/libnspr4-0d.symbols.amd64,
+    debian/libnspr4-0d.symbols.hurd_i386, debian/libnspr4-0d.symbols.i386,
+    debian/libnspr4-0d.symbols.ia64: Add symbols files to benefit from the
+    new features in dpkg-shlibdeps. Workaround debhelper lack of handling of
+    symbols files include with "../../" in the included file name.
+  * debian/control: Build depend on debhelper (>= 5.0.61) and dpkg-dev (>=
+    1.14.9), accordingly.
+  * debian/rules: Bump shlibs to current version, since new symbols were
+    added.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 24 Nov 2007 19:12:48 +0100
+
+nspr (4.6.7-1) unstable; urgency=low
+
+  * New upstream release, picked from NSPR_4_6_7_RTM cvs tag.
+  * debian/patches/18_kbsd_nspr.dpatch: Also add support for the Hurd.
+    Closes: #419528.
+
+ -- Mike Hommey <glandium@debian.org>  Sun, 01 Jul 2007 09:49:23 +0200
+
+nspr (4.6.6-3) unstable; urgency=low
+
+  * debian/rules: replace libnss3-0d (!) with libnspr4-0d in shlib
+    creation. Closes: #420069. Thanks Alexander Sack.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 20 Apr 2007 07:05:04 +0200
+
+nspr (4.6.6-2) unstable; urgency=low
+
+  * debian/control: Fixed section.
+  * debian/copyright: Fixed typo.
+  * debian/rules: Removed unused variables and replaced some = with :=.
+
+ -- Mike Hommey <glandium@debian.org>  Mon, 09 Apr 2007 20:29:27 +0200
+
+nspr (4.6.6-1) experimental; urgency=low
+
+  * Initial release. (Closes: #416150)
+
+ -- Mike Hommey <glandium@debian.org>  Sun, 25 Mar 2007 16:32:41 +0200

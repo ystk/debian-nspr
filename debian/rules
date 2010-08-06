@@ -1,0 +1,45 @@
+#!/usr/bin/make -f
+
+CFLAGS := -Wall -pipe
+
+ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
+	OPTFLAGS := --disable-optimize
+else
+	OPTFLAGS := --enable-optimize
+endif
+
+ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
+	DEBUGFLAGS := --enable-debug
+else
+	DEBUGFLAGS := --disable-debug --enable-debug-symbols
+endif
+
+%:
+	dh --sourcedirectory=mozilla/nsprpub $@
+
+override_dh_auto_configure:
+	for file in config.guess config.sub; do \
+		sed -i '2!b;/^#/ i\exec "/usr/share/misc/'$$file'" "$$@"' mozilla/nsprpub/build/autoconf/$$file; \
+	done
+
+	CFLAGS="$(CFLAGS)" \
+	LDFLAGS="-Wl,--as-needed" \
+	dh_auto_configure -- \
+                    $(OPTFLAGS) \
+		    --prefix=/usr \
+		    --enable-ipv6 \
+		    --with-mozilla \
+                    $(DEBUGFLAGS)
+
+override_dh_auto_clean:
+	dh_auto_clean
+
+	for file in config.guess config.sub; do \
+		sed -i '2!b;/^exec "/ d' mozilla/nsprpub/build/autoconf/$$file; \
+	done
+
+override_dh_strip:
+	dh_strip -a --dbg-package=libnspr4-0d-dbg
+
+override_dh_makeshlibs:
+	dh_makeshlibs -a -V 'libnspr4-0d (>= 4.8.6)' -- -c4
