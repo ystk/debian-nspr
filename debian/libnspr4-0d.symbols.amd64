@@ -1,6 +1,0 @@
-#include "libnspr4-0d.symbols"
-libnspr4.so.0d libnspr4-0d #MINVER#
- _PR_x86_64_AtomicAdd@Base 1.8.0.10
- _PR_x86_64_AtomicDecrement@Base 1.8.0.10
- _PR_x86_64_AtomicIncrement@Base 1.8.0.10
- _PR_x86_64_AtomicSet@Base 1.8.0.10

@@ -1,45 +1,71 @@
 #!/usr/bin/make -f
 
-CFLAGS := -Wall -pipe
+include debian/make.mk
+# Use dpkg-buildflags to get hardening flags, and exclude non-hardening flags
+dpkg_buildflags = $(and $(1),$(shell DEB_CFLAGS_MAINT_STRIP="$(shell DEB_BUILD_MAINT_OPTIONS=hardening=-all dpkg-buildflags --get $(1))" dpkg-buildflags --get $(1)))
+$(call lazy,CFLAGS,$$(call dpkg_buildflags,CFLAGS))
+$(call lazy,CPPFLAGS,$$(call dpkg_buildflags,CPPFLAGS))
+$(call lazy,LDFLAGS,$$(call dpkg_buildflags,LDFLAGS))
+
+CFLAGS += -Wall -pipe
+LDFLAGS += -Wl,--as-needed
 
 ifneq (,$(findstring noopt,$(DEB_BUILD_OPTIONS)))
-	OPTFLAGS := --disable-optimize
+	CONFIGURE_FLAGS := --disable-optimize
 else
-	OPTFLAGS := --enable-optimize
+	CONFIGURE_FLAGS := --enable-optimize
 endif
 
 ifneq (,$(findstring debug,$(DEB_BUILD_OPTIONS)))
-	DEBUGFLAGS := --enable-debug
+	CONFIGURE_FLAGS += --enable-debug
 else
-	DEBUGFLAGS := --disable-debug --enable-debug-symbols
+	CONFIGURE_FLAGS += --disable-debug --enable-debug-symbols
 endif
+
+ifeq (64,$(shell dpkg-architecture -qDEB_HOST_ARCH_BITS))
+	CONFIGURE_FLAGS += --enable-64bit
+endif
+
+$(call lazy,DEB_HOST_MULTIARCH,$$(shell dpkg-architecture -qDEB_HOST_MULTIARCH))
+
+PREPROCESS_FILES := $(wildcard debian/*.in)
+
+$(PREPROCESS_FILES:.in=): %: %.in
+	sed 's,@DEB_HOST_MULTIARCH@/,$(DEB_HOST_MULTIARCH:=/),g;s,@MULTIARCH_WILDCARD@/,$(if $(DEB_HOST_MULTIARCH),*/),g' $< > $@
 
 %:
 	dh --sourcedirectory=mozilla/nsprpub $@
 
-override_dh_auto_configure:
+override_dh_auto_configure: $(PREPROCESS_FILES:.in=)
 	for file in config.guess config.sub; do \
 		sed -i '2!b;/^#/ i\exec "/usr/share/misc/'$$file'" "$$@"' mozilla/nsprpub/build/autoconf/$$file; \
 	done
 
 	CFLAGS="$(CFLAGS)" \
-	LDFLAGS="-Wl,--as-needed" \
+	CPPFLAGS="$(CPPFLAGS)" \
+	LDFLAGS="$(LDFLAGS)" \
 	dh_auto_configure -- \
-                    $(OPTFLAGS) \
+                    $(CONFIGURE_FLAGS) \
 		    --prefix=/usr \
-		    --enable-ipv6 \
-		    --with-mozilla \
-                    $(DEBUGFLAGS)
+		    --libdir=/usr/lib/$(DEB_HOST_MULTIARCH)
 
 override_dh_auto_clean:
 	dh_auto_clean
 
+	rm -f $(PREPROCESS_FILES:.in=)
 	for file in config.guess config.sub; do \
 		sed -i '2!b;/^exec "/ d' mozilla/nsprpub/build/autoconf/$$file; \
 	done
 
 override_dh_strip:
-	dh_strip -a --dbg-package=libnspr4-0d-dbg
+	dh_strip -a --dbg-package=libnspr4-dbg
 
-override_dh_makeshlibs:
-	dh_makeshlibs -a -V 'libnspr4-0d (>= 4.8.6)' -- -c4
+override_dh_makeshlibs: /usr/share/debhelper/autoscripts/postinst-makeshlibs /usr/share/debhelper/autoscripts/postrm-makeshlibs
+	dh_makeshlibs -a -- -c4
+	cat /usr/share/debhelper/autoscripts/postinst-makeshlibs > debian/libnspr4.postinst.debhelper
+	cat /usr/share/debhelper/autoscripts/postrm-makeshlibs > debian/libnspr4.postrm.debhelper
+
+ifneq (,$(DEB_HOST_MULTIARCH))
+override_dh_gencontrol:
+	dh_gencontrol -- -Vmisc:Multi-Arch=same
+endif

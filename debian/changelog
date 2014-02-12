@@ -1,3 +1,118 @@
+nspr (2:4.9.2-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/libnspr4.symbols: Add new symbols.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 20 Jul 2012 08:40:44 +0200
+
+nspr (2:4.9.1-1) unstable; urgency=low
+
+   * New upstream release. Now patch-free!
+   * debian/copyright: Upstream upgraded to MPL 2.0.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 15 Jun 2012 09:25:54 +0200
+
+nspr (2:4.9-3) unstable; urgency=low
+
+  * debian/rules: Re-enable read-only relocations. Closes: #673090.
+
+ -- Mike Hommey <glandium@debian.org>  Thu, 17 May 2012 08:43:32 +0200
+
+nspr (2:4.9-2) unstable; urgency=low
+
+  * debian/control, debian/libnspr4*, debian/rules,
+    mozilla/nsprpub/config/rules.mk, mozilla/nsprpub/configure.in,
+    mozilla/nsprpub/lib/ds/Makefile.in,
+    mozilla/nsprpub/lib/libc/src/Makefile.in,
+    mozilla/nsprpub/pr/src/Makefile.in: Move to unversioned library.
+    ABI compatibility is ensured upstream, and the SO version, if it needed
+    a change at any time, would be a change in the library name. There is
+    no reason to keep making compatibility more difficult with other distros
+    and upstream binary releases. While previous versions were one-way
+    compatible (binaries built against other distros or upstream nspr could
+    work on Debian), this approach works both ways.
+  * debian/make.mk: Makefile utilities imported from Iceweasel.
+  * debian/rules, mozilla/nsprpub/configure.in: Use dpkg-buildflags for
+    hardening.
+  * debian/rules: Limit the number of times dpkg-architecture is called.
+  * debian/control: Bump Standards-Version to 3.9.3.0. No changes required.
+  * Adding an epoch to match the old libnspr4 package that used to be in
+    the Debian archive.
+
+ -- Mike Hommey <glandium@debian.org>  Sun, 13 May 2012 10:39:16 +0200
+
+nspr (4.9-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 24 Feb 2012 09:15:53 +0100
+
+nspr (4.9~beta5-2) unstable; urgency=low
+
+  * debian/rules, debian/libnspr4-0d.lintian-overrides.in: Use wildcards for
+    multiarch in lintian overrides. Closes: #658843.
+  * mozilla/nsprpub/configure.*: Allow to enable a set of hardening flags.
+    bz#725941.
+  * debian/rules: Enable hardening. Closes: #657522.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 10 Feb 2012 10:14:50 +0100
+
+nspr (4.9~beta5-1) experimental; urgency=low
+
+  * New upstream beta release.
+  * mozilla/nsprpub/configure.*, mozilla/nsprpub/config/rules.mk: Refreshed.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 23 Dec 2011 17:06:55 +0100
+
+nspr (4.8.9-1) unstable; urgency=low
+
+  * New upstream release.
+  * mozilla/nsprpub/configure.*: Refreshed.
+  * debian/libnspr4-0d.symbols: Add PR_GetVersion to the symbols file.
+  * debian/rules: Bump shlibs.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 12 Aug 2011 12:11:27 +0200
+
+nspr (4.8.8-2) unstable; urgency=low
+
+  * debian/libnspr4-0d.install.in, debian/libnspr4-0d.lintian-overrides.in,
+    debian/libnspr4-dev.install.in, debian/libnspr4-dev.links.in,
+    debian/control, debian/rules: Switch to multi-arch while keeping
+    backports easy. Closes: #497087.
+  * debian/control: Bump Standards-Version to 3.9.2.0. No changes required.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 18 Jun 2011 18:45:29 +0900
+
+nspr (4.8.8-1) unstable; urgency=low
+
+  * New upstream release.
+  * mozilla/nsprpub/configure: Refreshed.
+  * debian/libnspr4-0d.symbols*:
+    - Use symbols tags instead of individual symbols files for each
+      architecture.
+    - Add symbols tags for powerpcspe. Closes: #614228
+
+ -- Mike Hommey <glandium@debian.org>  Tue, 24 May 2011 20:11:53 +0200
+
+nspr (4.8.7-2) unstable; urgency=low
+
+  * Upload to unstable.
+  * debian/rules: Merge OPTFLAGS and DEBUGFLAGS in one variable.
+  * debian/control, debian/patches/30_config_64bits.patch,
+    debian/patches/99_configure.patch, debian/patches/series,
+    debian/rules: Use dpkg-architecture to enable 64-bits build on 64 bits
+    architectures, instead of relying on a patch to configure.in.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 19 Feb 2011 14:21:52 +0100
+
+nspr (4.8.7-1) experimental; urgency=low
+
+  * New upstream release.
+  * mozilla/nsprpub/configure.in: Don't use -march=armv5te -mthumb-interwork
+    on non-android arm platforms. bz#626035.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 15 Jan 2011 12:07:25 +0100
+
 nspr (4.8.6-1) unstable; urgency=low
 
   * New upstream release.
