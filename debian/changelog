@@ -1,3 +1,10 @@
+nspr (4.8.6-1+squeeze1) squeeze-security; urgency=high
+
+  * Non-maintainer upload by the Security Team.
+  * Fix CVE-2013-5607: integer overflow on 64 bit systems
+
+ -- Raphael Geissert <geissert@debian.org>  Mon, 16 Dec 2013 09:38:13 +0100
+
 nspr (4.8.6-1) unstable; urgency=low
 
   * New upstream release.
