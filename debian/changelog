@@ -1,3 +1,79 @@
+nspr (2:4.10.7-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Sun, 24 Aug 2014 08:25:26 +0900
+
+nspr (2:4.10.6-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 07 Jun 2014 17:10:25 +0900
+
+nspr (2:4.10.4-1) unstable; urgency=medium
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 21 Mar 2014 07:51:39 +0900
+
+nspr (2:4.10.3-1) unstable; urgency=medium
+
+  * New upstream release.
+  * debian/libnspr4.symbols: Updated.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 08 Feb 2014 10:51:24 +0900
+
+nspr (2:4.10.2-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 16 Nov 2013 08:11:38 +0900
+
+nspr (2:4.10.1-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Mon, 21 Oct 2013 08:19:05 +0900
+
+nspr (2:4.10-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/rules: Adjusted to new source layout.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 15 Jun 2013 18:37:30 +0900
+
+nspr (2:4.9.6-1) unstable; urgency=low
+
+  * New upstream release.
+  * debian/libnspr4.symbols: Updated.
+
+ -- Mike Hommey <glandium@debian.org>  Thu, 04 Apr 2013 23:43:12 +0200
+
+nspr (2:4.9.5-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Fri, 15 Feb 2013 09:11:59 +0100
+
+nspr (2:4.9.4-2) unstable; urgency=low
+
+  * pr/src/Makefile.in: Use -lrt appropriately (or not) on Android, GNU/Hurd
+    and GNU/kFreeBSD. bz#824742.
+
+ -- Mike Hommey <glandium@debian.org>  Sat, 29 Dec 2012 09:50:20 +0100
+
+nspr (2:4.9.4-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Sun, 23 Dec 2012 17:36:15 +0100
+
+nspr (2:4.9.3-1) unstable; urgency=low
+
+  * New upstream release.
+
+ -- Mike Hommey <glandium@debian.org>  Thu, 01 Nov 2012 10:04:17 +0100
+
 nspr (2:4.9.2-1) unstable; urgency=low
 
   * New upstream release.

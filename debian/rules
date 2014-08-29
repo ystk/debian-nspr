@@ -34,11 +34,11 @@ $(PREPROCESS_FILES:.in=): %: %.in
 	sed 's,@DEB_HOST_MULTIARCH@/,$(DEB_HOST_MULTIARCH:=/),g;s,@MULTIARCH_WILDCARD@/,$(if $(DEB_HOST_MULTIARCH),*/),g' $< > $@
 
 %:
-	dh --sourcedirectory=mozilla/nsprpub $@
+	dh --sourcedirectory=nspr $@
 
 override_dh_auto_configure: $(PREPROCESS_FILES:.in=)
 	for file in config.guess config.sub; do \
-		sed -i '2!b;/^#/ i\exec "/usr/share/misc/'$$file'" "$$@"' mozilla/nsprpub/build/autoconf/$$file; \
+		sed -i '2!b;/^#/ i\exec "/usr/share/misc/'$$file'" "$$@"' nspr/build/autoconf/$$file; \
 	done
 
 	CFLAGS="$(CFLAGS)" \
@@ -54,7 +54,7 @@ override_dh_auto_clean:
 
 	rm -f $(PREPROCESS_FILES:.in=)
 	for file in config.guess config.sub; do \
-		sed -i '2!b;/^exec "/ d' mozilla/nsprpub/build/autoconf/$$file; \
+		sed -i '2!b;/^exec "/ d' nspr/build/autoconf/$$file; \
 	done
 
 override_dh_strip:
