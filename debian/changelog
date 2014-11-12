@@ -1,3 +1,9 @@
+nspr (4.8.6-1+squeeze2) squeeze-lts; urgency=high
+
+  * CVE-2014-1545
+
+ -- Thorsten Alteholz <debian@alteholz.de>  Thu, 07 Aug 2014 18:38:13 +0200
+
 nspr (4.8.6-1+squeeze1) squeeze-security; urgency=high
 
   * Non-maintainer upload by the Security Team.
