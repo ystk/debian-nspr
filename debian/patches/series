@@ -5,3 +5,5 @@
 99_configure.patch
 CVE-2013-5607.patch
 CVE-2014-1545.patch
+CVE-2015-7183-1.patch
+CVE-2015-7183-2.patch

@@ -1,3 +1,11 @@
+nspr (4.8.6-1+squeeze3) squeeze-lts; urgency=high
+
+  * Non-maintainer upload by the Squeeze LTS team.
+  * Fix CVE-2015-7183, MFSA-2015-133: heap-buffer overflow in
+    PL_ARENA_ALLOCATE
+
+ -- Santiago Ruano Rincón <santiagorr@riseup.net>  Sun, 15 Nov 2015 16:56:49 +0100
+
 nspr (4.8.6-1+squeeze2) squeeze-lts; urgency=high
 
   * CVE-2014-1545
