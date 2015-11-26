@@ -1,3 +1,11 @@
+nspr (2:4.10.7-1+deb8u1) jessie-security; urgency=high
+
+  * Non-maintainer upload.
+  * Fix CVE-2015-7183, mfsa-2015-133: heap-buffer overflow in
+    PL_ARENA_ALLOCATE
+
+ -- Santiago Ruano Rincón <santiago@debian.org>  Mon, 16 Nov 2015 22:55:05 +0100
+
 nspr (2:4.10.7-1) unstable; urgency=medium
 
   * New upstream release.
